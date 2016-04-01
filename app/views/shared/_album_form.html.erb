@@ -3,7 +3,9 @@
 
 
 <body style="background-image:url( http://www.camfm.co.uk/media/shows/thumbs/Cambridge_Golden_Record.png );">
+
 <form action="/albums" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden"
           name="authenticity_token"
          value="<%= form_authenticity_token %>" >

@@ -1,4 +1,10 @@
-<form action="/tracks" method="post">
+<% action = (album.persisted? ? track_url(track) : "/tracks") %>
+<% method = (album.persisted? ? :patch : :post) %>
+
+<body style="background-image:url( http://thumbs.dreamstime.com/x/warped-piano-music-sheet-background-23627360.jpg );">
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden"
           name="authenticity_token"
          value="<%= form_authenticity_token %>" >
