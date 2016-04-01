@@ -1,0 +1,34 @@
+<form action="/tracks" method="post">
+  <input type="hidden"
+          name="authenticity_token"
+         value="<%= form_authenticity_token %>" >
+
+   <label for="album_name">Album</label>
+   <select name="track[album_id]" id="album_name">
+     <option></option>
+     <% Album::albums.each do |album| %>
+       <option
+         <%= album.id == album_id ? "selected" : "" %>
+         value="<%= album.name %>">
+         <%= album.name.upcase %>
+       </option>
+     <% end %>
+   </select>
+   <br>
+
+  <label for="name">Name</label>
+  <input
+    type="text"
+    name="track[name]"
+    id="name">
+  <br>
+
+  <label for="password">Lyrics</label>
+  <input
+    type="password"
+    name="user[password]"
+    id="password" >
+  <br>
+
+  <input type="submit" value="Save Track Info">
+</form>

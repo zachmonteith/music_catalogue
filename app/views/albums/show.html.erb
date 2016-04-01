@@ -1,0 +1,13 @@
+<h1><mark>Album: <%= @album.name %> by <%= Band.find_by(id: @album.band_id).name %> </h1>
+
+tracks:<br>
+<%= @album.tracks.each do |track| track.name + "\n" end.join %>
+
+
+<center><h4><mark>links for:</h4><p>
+<mark>
+<a href="/albums/1/edit">edit this album</a> <br>
+destroy this album<br>
+show this band<br>
+show the tracks on this album<br>
+make another album by this band

@@ -1,0 +1,4 @@
+<h1><center>New album for <%= @band ||= "OOPS!!!" %></h1>
+
+  <%= render "shared/errors" %>
+  <%= render "shared/album_form", album: @album, band: @band %>

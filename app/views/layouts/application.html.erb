@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!-- <body style="background-image:url(http://previews.123rf.com/images/genotar/genotar1004/genotar100400036/6938519-Grunge-musical-background-Stock-Photo-music-sheet-background.jpg);"> -->
+  <font color="red"><mark><b>
+  <h3><%= current_user.email if current_user %></h3>
+  <% submit_text = (current_user ?  'Logout' : 'Login')%>
+  <% action = (current_user ? "/session": "/session/new" ) %>
+    <% method = (current_user ? :delete : :get) %>
+  <form action= "<%= action %>" method="post">
+
+    <input type="hidden"
+            name="authenticity_token"
+           value="<%= form_authenticity_token %>">
+
+    <input type="hidden" name="_method" value="<%= method %>">
+    <input type="submit" value="<%= submit_text %>">
+</form>
+
+<%= yield %>
+
+</body>
+</html>

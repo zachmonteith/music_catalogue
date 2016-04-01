@@ -1,0 +1,52 @@
+<% action = (album.persisted? ? album_url(album) : "/albums") %>
+<% method = (album.persisted? ? :patch : :post) %>
+
+
+<body style="background-image:url( http://www.camfm.co.uk/media/shows/thumbs/Cambridge_Golden_Record.png );">
+<form action="/albums" method="post">
+  <input type="hidden"
+          name="authenticity_token"
+         value="<%= form_authenticity_token %>" >
+
+
+  <label for="name">Album Name</label>
+  <input
+    type="text"
+    name="album[name]"
+    id="name"
+    value="<% album.name %>">
+  <br>
+
+   <label for="band_name">Band Name</label>
+   <select name="album[band_id]" id="album_name">
+     <option></option>
+     <% Band.all.each do |band| %>
+       <option
+         <%= band.id == album.band_id ? "selected" : "" %>
+         value="<%= album.band_id %>">
+         <%= band.name %>
+       </option>
+     <% end %>
+   </select>
+   <br>
+
+
+  Live in Concert?
+  <input
+    type="radio"
+    name="album[live]"
+    value="true"
+    id="yes"
+    <%= "checked" if album.live %>>
+  <label for="yes">Yes, and what a concert!!</label>
+  <input
+    type="radio"
+    name="album[live]"
+    value="false"
+    id="no"
+    <%= "checked" unless album.live %>>
+    <label for="no">No way, the mix is too good.</label>
+  <br>
+
+  <input type="submit" value="Save Album Info">
+</form>
